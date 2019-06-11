@@ -1,0 +1,28 @@
+[submodule "/home/sanket/.vim/bundle/goyo"]
+	path = /home/sanket/.vim/bundle/goyo
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule "/home/sanket/.vim/bundle/YouCompleteMe"]
+	path = /home/sanket/.vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule "/home/sanket/.vim/bundle/vim-airline-themes"]
+	path = /home/sanket/.vim/bundle/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes.git
+[submodule "/home/sanket/.vim/bundle/python-mode"]
+	path = /home/sanket/.vim/bundle/python-mode
+	url = https://github.com/python-mode/python-mode.git
+[submodule "/home/sanket/.vim/bundle/nerdtree"]
+	path = /home/sanket/.vim/bundle/nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "/home/sanket/.vim/bundle/vim-colorschemes"]
+	path = /home/sanket/.vim/bundle/vim-colorschemes
+	url = https://github.com/flazz/vim-colorschemes.git
+[submodule "/home/sanket/.vim/bundle/vim-airline"]
+	path = /home/sanket/.vim/bundle/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "/home/sanket/.vim/bundle/vimtex"]
+	path = /home/sanket/.vim/bundle/vimtex
+    url = https://github.com/lervag/vimtex.git
+[submodule "/home/sanket/.vim/bundle/vimwiki"]
+	path = /home/sanket/.vim/bundle/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
+

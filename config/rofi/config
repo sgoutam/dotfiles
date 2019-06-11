@@ -1,0 +1,28 @@
+! ------------------------------------------------------------------------------
+! Rofi configs
+! ------------------------------------------------------------------------------
+
+rofi.color-enabled: true
+!                   'background', 'border', 'separator'
+rofi.color-window:   argb:cc252936, #2A6EA7, #2A6EA7 
+! State:            'bg',   'fg',   'bgalt',    'hlbg', 'hlfg'
+rofi.color-normal: argb:00252936, #ffffff, argb:00252936, argb:009575cd, #00cccc
+rofi.color-active: argb:00252936, #252936, argb:00252936, argb:009575cd, #ffc000
+rofi.color-urgent: argb:00252936, #ff0000, argb:00252936, argb:00252936, #ff0000
+rofi.modi: drun,run,window,ssh
+
+! ----------------------
+! Rofi window look
+! ----------------------
+!rofi.fullscreen: true
+rofi.padding: 40
+rofi.width: 40
+rofi.eh: 1
+rofi.lines: 5
+rofi.sidebar-mode: true
+rofi.border: 2px
+rofi.line-margin: 10
+rofi.bw: 4
+rofi.separator-style: solid
+rofi.font: Noto Sans 15
+rofi.hide-scrollbar: true

@@ -1,0 +1,4 @@
+[dotfiles]
+    repository = /home/sanket/Documents/dotfiles
+    packages = ['config']
+    ignore = [ '.git', '.gitignore', '*.swp', 'README.md' ]

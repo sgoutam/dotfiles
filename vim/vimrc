@@ -1,0 +1,256 @@
+" vim:foldenable:foldmethod=marker:foldlevel=0
+" __author__ = Sanket Goutam
+"           VIMRC 2019
+
+" ==============================================================================
+" Standard VIM configurations
+" ==============================================================================
+
+" Misc {{{
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Search history and undo
+set history=700
+set undolevels=700
+
+" ignore wildcard files
+set wildignore=*.swp,*.bak,*.pyc,*.class
+
+set title " change the terminals title
+
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2
+" before you paste. At the bottom you should see ``-- INSERT (paste) -- ``
+set pastetoggle=<F2>
+set clipboard=unnamedplus
+
+" Mouse and Backspace
+set mouse=a
+set ttyfast                     " better rendering of characters
+set backspace=indent,eol,start  " backspace removes everything
+
+" Disable backup and swap files, quite unnecessary and often cause conflicts
+set nobackup
+set nowritebackup
+set noswapfile
+
+" }}}
+
+" Keybindings - vim shortcuts {{{
+" Rebind <Leader> key to `,`
+let mapleader=","
+
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+noremap <C-n> :nohl<CR>
+vnoremap <C-n> :nohl<CR>
+inoremap <C-n> :nohl<CR>
+
+" Quicksave command
+noremap <C-z> :update<CR>
+vnoremap <C-z> <C-C>:update<CR>
+inoremap <C-z> <C-O>:update<CR>
+
+" Quick quit command
+noremap <Leader>e :quit<CR>     " Quit current window
+noremap <Leader>E :qa!<CR>      " Quit all windows
+
+" bind Ctrl+movement keys to move around the windows, instead of using
+" Ctrl + w + <movement> 
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+" :tabclose only hides the buffer, doesn't delete it. :bd deletes the loaded
+" buffer
+map <Leader>q <esc>:bd<CR>          
+
+" map sort function to a key
+" vonremap <Leader>s :sort<CR>
+
+" easier moving of code blocks
+" Try to go into visual mode (v), select several lines of code here
+" and then press ``>`` several times
+vnoremap < <gv " better indentation
+vnoremap > >gv " better indentation
+
+" remap movement keys to move between wrapped lines
+nnoremap <silent>k gk
+nnoremap <silent>j gj
+vnoremap <silent>j gk
+vnoremap <silent>k gj
+
+" save sudo file
+cmap w!! w !sudo tee % >/dev/null
+" }}}
+
+" UI layout {{{
+" 
+" Show whitespace
+" MUST be inserted BEFORE the colorscheme command
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" au InsertLeave * match ExtraWhitespace /\s\+$/
+
+" Enable syntax highlighting
+filetype off
+filetype plugin indent on
+syntax on
+
+" line numbers and length
+set number
+set ruler
+set tw=80           " width of document
+" set nowrap        " don't automatically wrap on load
+set fo-=t           " don't automatically wrap text when typing
+set showcmd         " show command in bottom bar
+set cursorline      " highlight current line
+set showmatch       " show matching parenthesis
+set lazyredraw      " do not redraw screen when executing macros
+set linebreak       " wraps long lines at a character instead of EOL
+set wildmenu        " enhanced command-line completion
+set modeline
+set modelines=1     " look at the last line for mode specific config
+" }}}
+
+" Spaces & Tabs {{{
+" Be a good programmer, use consistent spacing for indentation
+" Tabs are inconsistent across platforms, coding standards suggest space
+set tabstop=4 		    " for existing tabs
+set softtabstop=4
+set shiftwidth=4 	    " indenting with '>'
+set shiftround
+set expandtab	        " when pressing tab
+set autoindent          " set autoindent on
+set smartindent         " autoindent C like, less strict than using cindent
+" }}}
+
+" Searching {{{
+" Make search case insensitive
+set hlsearch        " highlight all matches
+set incsearch       " search as characters are entered
+set ignorecase      " ignore case when searching
+set smartcase       " overrides ignorecase when all CAPS are entered 
+" }}}
+
+" Folding {{{
+set nofoldenable            " don't fold by default
+set foldmethod=syntax       " fold based on indent level
+set foldnestmax=10          " max 10 depth
+" use space for folding
+nnoremap <space> za     
+set foldlevelstart=10       " start with fold level of 1
+" }}}
+
+" ========================================================================
+" Load plugins using pathogen
+" All plugin related settings should be defined after pathogen is called
+" ========================================================================
+
+" Pathogen call {{{
+" set-up pathogen
+" mkdir -p ~/.vim/autoload ~/.vim/bundle
+" curl -so ~/.vim/autoload/pathogen.vim https://raw.github.com/tpope/vim-pathogen/HEAD/autoload/pathogen.vim
+" Now you can install any plugin into a .vim/bundle/plugin-name/ folder
+call pathogen#infect()
+call pathogen#helptags()
+" }}}
+
+" Colors {{{
+" Color Schemes -- one stop shop for vim colorschemes
+" git submodule add https://github.com/flazz/vim-colorschemes.git ~/.vim/bundle/colorschemes
+set background=dark
+set t_Co=256
+colorscheme molokai_dark 
+" }}}
+
+" Airline {{{
+" Settings for vim-airline
+" git submodule add https://github.com/vim-airline/vim-airline.git ~/.vim/bundle/airline
+set laststatus=2
+set noshowmode                  " hide the default mode display
+
+" git clone https://github.com/vim-airline/vim-airline-themes ~/.vim/bundle/vim-airline-themes
+let g:airline_theme='simple'
+let g:airline_powerline_fonts=1
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#left_sep=' '
+let g:airline#extensions#tabline#left_alt_sep='|'
+let g:airline#extensions#tabline#formatter='unique_tail'
+" let g:airline_extensions=[]     " do not load extensions unless specified
+"}}}
+"
+"
+"
+
+" NERDTree{{{
+
+" Setting NERDTree
+" git submodule add https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+map <C-b> :NERDTreeToggle<CR>
+set encoding=utf-8
+let NERDTreeIgnore=['.\pyc$', '.\pyo$', '__pycache__$']  " Ignore files in NERDTree
+let NERDTreeWinSize=25
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+let NERDTreeQuitOnOpen=1
+" }}}
+
+" Python-mode {{{
+" Settings for python-mode
+" git submodule add https://github.com/klen/python-mode ~/.vim/bundle/pythonmode
+let g:pymode_syntax= 1
+let g:pymode_syntax_builtin_objs=0
+let g:pymode_syntax_builtin_funcs=0
+let g:pymode_python='python3'
+" }}}
+
+" Goyo {{{
+" Goyo.vim - a distraction free writing mode
+" git submodule add https://github.com/junegunn/goyo.vim.git ~/.vim/bundle/goyo
+nnoremap <silent> <Leader>z :Goyo<CR>
+let g:goyo_width=80
+let g:goyo_margin_top=2
+let g:goyo_margin_bottom=2
+" }}}
+
+" YouCompleteMe {{{
+" git submodule add https://github.com/Valloric/YouCompleteMe.git ~/.vim/bundle/YouCompleteMe
+" cd ~/.vim/bundle/YouCompleteMe
+" python3 install.py --clang-completer
+" YouCompleteMe loads flags from this file
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+" }}}
+
+" vimtex {{{
+" git submodule add https://github.com/lervag/vimtex.git ~/.vim/bundle/vimtex
+" \ll to toggle vimtex compilation \lv to view the pdf
+let g:vimtex_view_method = 'zathura'    " Zathura is a minimalistic document viewer
+"}}}
+
+" vimwiki {{{
+" git submodule add https://github.com/vimwiki/vimwiki.git 
+" ~/Documents/dotfiles/dotvim/bundle/vimwiki
+" Saving wiki to ~/Documents/notes
+let g:vimwiki_list=[{'path': '~/Dropbox/notes/', 'syntax': 'markdown','ext': '.md'}]
+function! ToggleCalendar()
+    execute ":Calendar"
+    if exists("g:calendar_open")
+        if g:calendar_open == 1
+            execute "q"
+            unlet g:calendar_open
+        else
+            g:calendar_open=1
+        end
+    else
+        let g:calendar_open=1
+    end
+endfunction
+map <Leader>c :call ToggleCalendar()<CR>
+
+" }}}
